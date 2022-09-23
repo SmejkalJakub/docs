@@ -27,6 +27,7 @@ jobs:
         echo   \"index_name\": \"hardwario\", >> algolia/config.json
         echo   \"start_urls\": [ >> algolia/config.json
         echo     \"https://docs.hardwario.com/\" >> algolia/config.json
+        echo   ], >> algolia/config.json
         echo   \"stop_urls\": [], >> algolia/config.json
         echo   \"selectors\": { >> algolia/config.json
         echo     \"lvl0\": \"h1\", >> algolia/config.json
