@@ -47,6 +47,7 @@ jobs:
 
     - name: Build The Search
       run: |
+        cd algolia
         ls .
         chmod +x docsearch
         pipenv install
