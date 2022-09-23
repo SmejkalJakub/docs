@@ -41,10 +41,8 @@ jobs:
         cat config.json
         ls .
 
-    - name: Install pipenv
-      uses: dschep/install-pipenv-action@v1
-
     - name: Build The Search
       run: |
+        python -m pip install --upgrade pipenv
         chmod +x algolia/docsearch
         cd algolia ; pipenv install ; pipenv run ./docsearch run config.json
