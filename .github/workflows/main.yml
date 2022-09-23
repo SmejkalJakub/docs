@@ -44,11 +44,23 @@ jobs:
         sed -r -i'' 's/APPLICATION_ID=/APPLICATION_ID=AKRT8SVTPP/' algolia/.env
         sed -r -i'' 's/API_KEY=/API_KEY=${{ secrets.API_KEY }}/' algolia/.env
 
-
         cat algolia/.env
+
+        echo from algoliasearch.search_client import SearchClient > deleteIndex.py
+        echo client = SearchClient.create(\"AKRT8SVTPP\", \"${{ secrets.API_KEY }}\") >> deleteIndex.py
+        echo index = client.init_index(\"hardwario\") >> deleteIndex.py
+        echo index.clear_objects() >> deleteIndex.py
+        echo print(\"Deleted records.\") >> deleteIndex.py
+
+        cat deleteIndex.py
+
 
     - name: Build The Search
       run: |
         python -m pip install --upgrade pipenv
+        python -m pip install --upgrade algoliasearch
+
+        python deleteIndex.py
+
         chmod +x algolia/docsearch
         cd algolia ; pipenv install ; pipenv run ./docsearch run config.json
