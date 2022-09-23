@@ -35,6 +35,7 @@ jobs:
 
     - name: Prepare the algolia
       run: |
+        ls -a algolia
         mv algolia/.env.example .env
         echo { > config.json
         echo   "index_name": "hardwario", >> config.json
