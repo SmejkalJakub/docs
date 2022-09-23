@@ -48,10 +48,10 @@ jobs:
     - name: Build The Search
       run: |
         ls .
-        pipenv install
-        pipenv shell
         chmod +x docsearch
-        ./docsearch run config.json
+        pipenv install
+        pipenv run ./docsearch run config.json
+
 
 
 
