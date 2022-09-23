@@ -59,4 +59,4 @@ jobs:
     - name: Build The Search
       run: |
         chmod +x algolia/docsearch
-        algolia/docsearch run config.json
+        cd algolia ; ./docsearch run config.json
