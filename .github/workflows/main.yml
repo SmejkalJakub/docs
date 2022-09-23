@@ -36,25 +36,25 @@ jobs:
 
     - name: Prepare the algolia
       run: |
-        ls .
-        cd algolia
+        ls algolia/
         mv algolia/.env.example algolia/.env
-        echo { > config.json
-        echo   "index_name": "hardwario", >> config.json
-        echo   "start_urls": [ >> config.json
-        echo     "https://docs.hardwario.com/" >> config.json
-        echo   "stop_urls": [], >> config.json
-        echo   "selectors": { >> config.json
-        echo     "lvl0": "h1", >> config.json
-        echo     "lvl1": "h2", >> config.json
-        echo     "lvl2": "h3", >> config.json
-        echo     "lvl3": "h4", >> config.json
-        echo     "lvl4": "h5", >> config.json
-        echo     "lvl5": "h6", >> config.json
-        echo     "text": "p, li" >> config.json
-        echo   } >> config.json
-        echo } >> config.json
-        cat config.json
+        echo { > algolia/config.json
+        echo   "index_name": "hardwario", >> algolia/config.json
+        echo   "start_urls": [ >> algolia/config.json
+        echo     "https://docs.hardwario.com/" >> algolia/config.json
+        echo   "stop_urls": [], >> algolia/config.json
+        echo   "selectors": { >> algolia/config.json
+        echo     "lvl0": "h1", >> algolia/config.json
+        echo     "lvl1": "h2", >> algolia/config.json
+        echo     "lvl2": "h3", >> algolia/config.json
+        echo     "lvl3": "h4", >> algolia/config.json
+        echo     "lvl4": "h5", >> algolia/config.json
+        echo     "lvl5": "h6", >> algolia/config.json
+        echo     "text": "p, li" >> algolia/config.json
+        echo   } >> algolia/config.json
+        echo } >> algolia/config.json
+        cat algolia/config.json
+        ls algolia/
 
     - name: Build The Search
       run: |
