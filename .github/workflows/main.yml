@@ -40,6 +40,8 @@ jobs:
         echo } >> config.json
         cat config.json
         ls .
+        sed -r -i'' "s/\"APPLICATION_ID=\"/\"APPLICATION_ID=AKRT8SVTPP\"/g" algolia/.env
+        sed -r -i'' "s/\"APPLICATION_ID=\"/\"API_KEY=${{ secrets.API_KEY }}\"/g" algolia/.env
 
     - name: Build The Search
       run: |
