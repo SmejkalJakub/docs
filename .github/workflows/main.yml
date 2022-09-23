@@ -41,7 +41,7 @@ jobs:
         cat config.json
         ls .
         sed -r -i'' 's/APPLICATION_ID=/APPLICATION_ID=AKRT8SVTPP/' algolia/.env
-        sed -r -i'' 's/API_KEY=/"API_KEY=${{ secrets.API_KEY }}"/' algolia/.env
+        sed -r -i'' 's/API_KEY=/API_KEY=${{ secrets.API_KEY }}/' algolia/.env
 
 
         cat algolia/.env
