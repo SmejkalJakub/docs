@@ -1,0 +1,65 @@
+name: main
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.6'
+        cache: 'pipenv'
+
+    - name: Clone algolia repository
+      uses: actions/checkout@v2
+      with:
+        repository: https://github.com/algolia/docsearch-scraper.git
+        path: algolia
+
+    - name: Prepare the algolia
+      run: |
+        ls .
+        cd algolia
+        mv .env.example .env
+        echo { > config.json
+        echo   "index_name": "hardwario", >> config.json
+        echo   "start_urls": [ >> config.json
+        echo     "https://docs.hardwario.com/" >> config.json
+        echo   "stop_urls": [], >> config.json
+        echo   "selectors": { >> config.json
+        echo     "lvl0": "h1", >> config.json
+        echo     "lvl1": "h2", >> config.json
+        echo     "lvl2": "h3", >> config.json
+        echo     "lvl3": "h4", >> config.json
+        echo     "lvl4": "h5", >> config.json
+        echo     "lvl5": "h6", >> config.json
+        echo     "text": "p, li" >> config.json
+        echo   } >> config.json
+        echo } >> config.json
+        cat config.json
+
+    - name: Build The Search
+      run: |
+        ls .
+        pipenv install
+        pipenv shell
+        chmod +x docsearch
+        ./docsearch run config.json
+
+
+
+
+
+
+
+
+
+
+
+
+
