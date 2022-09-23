@@ -20,23 +20,9 @@ jobs:
         repository: algolia/docsearch-scraper
         path: algolia
 
-    - name: Install requirements
-      run: |
-        pip install Scrapy==2.2.1
-        pip install pyperclip==1.5.27
-        pip install python-dotenv==0.7.1
-        pip install ratelimit==1.4.1
-        pip install selenium==3.141.0
-        pip install slacker==0.9.60
-        pip install tldextract==2.1.0
-        pip install pytest==3.10.0
-        pip install requests-iap==0.2.0
-        pip install python-helpscout-v2==1.0.1
-        pip install algoliasearch
-
     - name: Prepare the algolia
       run: |
-        mv algolia/.env.example .env
+        mv algolia/.env.example algolia/.env
         echo { > config.json
         echo   "index_name": "hardwario", >> config.json
         echo   "start_urls": [ >> config.json
@@ -55,8 +41,10 @@ jobs:
         cat config.json
         ls .
 
+    - name: Install pipenv
+        uses: dschep/install-pipenv-action@v1
+
     - name: Build The Search
       run: |
-        python --version
         chmod +x algolia/docsearch
-        algolia/docsearch run config.json
+        cd algolia ; pipenv install ; pipenv run ./docsearch run config.json
