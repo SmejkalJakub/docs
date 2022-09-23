@@ -8,11 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: algolia/docsearch-scraper
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.6'
 
     - name: Clone algolia repository
       uses: actions/checkout@v2
