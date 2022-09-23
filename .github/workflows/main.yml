@@ -14,6 +14,11 @@ jobs:
       with:
         python-version: '3.6'
 
+    - name: Install all dependencies
+      run: |
+        python -m pip install --upgrade pipenv
+        python -m pip install --upgrade algoliasearch
+
     - name: Clone algolia repository
       uses: actions/checkout@v2
       with:
@@ -39,28 +44,21 @@ jobs:
         echo     \"text\": \"p, li\" >> algolia/config.json
         echo   } >> algolia/config.json
         echo } >> algolia/config.json
-        cat algolia/config.json
-        ls .
+
         sed -r -i'' 's/APPLICATION_ID=/APPLICATION_ID=AKRT8SVTPP/' algolia/.env
         sed -r -i'' 's/API_KEY=/API_KEY=${{ secrets.API_KEY }}/' algolia/.env
 
-        cat algolia/.env
-
+    - name: Delete Old Index
+      run: |
         echo "from algoliasearch.search_client import SearchClient" > deleteIndex.py
         echo "client = SearchClient.create(\"AKRT8SVTPP\", \"${{ secrets.API_KEY }}\")" >> deleteIndex.py
         echo "index = client.init_index(\"hardwario\")" >> deleteIndex.py
         echo "index.clear_objects()" >> deleteIndex.py
         echo "print(\"Deleted records.\")" >> deleteIndex.py
 
-        cat deleteIndex.py
-
-
-    - name: Build The Search
-      run: |
-        python -m pip install --upgrade pipenv
-        python -m pip install --upgrade algoliasearch
-
         python deleteIndex.py
 
+    - name: Build The Index
+      run: |
         chmod +x algolia/docsearch
         cd algolia ; pipenv install ; pipenv run ./docsearch run config.json
