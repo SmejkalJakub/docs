@@ -49,8 +49,7 @@ jobs:
         cd algolia
         ls .
         chmod +x docsearch
-        pipenv install
-        pipenv run ./docsearch run config.json
+        ./docsearch run config.json
 
 
 
