@@ -57,5 +57,6 @@ jobs:
 
     - name: Build The Search
       run: |
+        python --version
         chmod +x algolia/docsearch
         algolia/docsearch run config.json
