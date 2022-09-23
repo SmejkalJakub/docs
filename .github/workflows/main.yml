@@ -18,7 +18,6 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: algolia/docsearch-scraper
-        path: algolia
 
     - name: Install requirements
       run: |
@@ -36,9 +35,7 @@ jobs:
 
     - name: Prepare the algolia
       run: |
-        ls .
-        cd algolia
-        mv .env.example .env
+        mv algolia/.env.example .env
         echo { > config.json
         echo   "index_name": "hardwario", >> config.json
         echo   "start_urls": [ >> config.json
@@ -55,8 +52,9 @@ jobs:
         echo   } >> config.json
         echo } >> config.json
         cat config.json
+        ls .
 
     - name: Build The Search
       run: |
         chmod +x algolia/docsearch
-        cd algolia ; ./docsearch run config.json
+        ./docsearch run config.json
