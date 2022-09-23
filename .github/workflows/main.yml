@@ -1,32 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
-
-@SmejkalJakub
-SmejkalJakub
-/
-docs
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-paths fixed main #12
-Summary
-Usage
-Workflow file
-Jobs
-build
-Workflow file for this run
-.github/workflows/main.yml at ed75b0f
 name: main
 
 on:
