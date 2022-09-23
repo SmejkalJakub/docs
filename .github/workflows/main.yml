@@ -17,7 +17,7 @@ jobs:
     - name: Clone algolia repository
       uses: actions/checkout@v2
       with:
-        repository: https://github.com/algolia/docsearch-scraper.git
+        repository: algolia/docsearch-scraper
         path: algolia
 
     - name: Prepare the algolia
