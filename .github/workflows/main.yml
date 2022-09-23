@@ -60,7 +60,7 @@ jobs:
       run: |
         ls algolia/
         chmod +x algolia/docsearch
-        cd algolia && docsearch run config.json
+        cd algolia && ./docsearch
 
 
 
