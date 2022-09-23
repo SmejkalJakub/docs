@@ -38,7 +38,7 @@ jobs:
       run: |
         ls .
         cd algolia
-        mv .env.example .env
+        mv algolia/.env.example algolia/.env
         echo { > config.json
         echo   "index_name": "hardwario", >> config.json
         echo   "start_urls": [ >> config.json
@@ -58,8 +58,10 @@ jobs:
 
     - name: Build The Search
       run: |
+        cd algolia
+        ls .
         chmod +x algolia/docsearch
-        algolia/docsearch run config.json
+        cd algolia && algolia/docsearch run config.json
 
 
 
